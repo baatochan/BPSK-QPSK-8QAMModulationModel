@@ -1,4 +1,4 @@
-function [ carrierWawe, timeAxis, numberOfSamplesInSymbol ] = ChannelPSK( WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega )
+function [ carrierWawe, timeAxis, numberOfSamplesInSymbol, x, y ] = ChannelPSK( WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega )
 
  % Parametry
     sampleFrequency = 20000; % czestotliwosc probkowania [Hz]
@@ -15,6 +15,9 @@ function [ carrierWawe, timeAxis, numberOfSamplesInSymbol ] = ChannelPSK( WAWE_F
     
     
     carrierWawe = zeros(1, numberOfSamplesInSymbol*BIT_NUMBER);
+    x= zeros(1, BIT_NUMBER);
+    y= zeros(1, BIT_NUMBER);
+    
     
     for i = 1:BIT_NUMBER
         if bitArray(i) == 0
@@ -22,10 +25,13 @@ function [ carrierWawe, timeAxis, numberOfSamplesInSymbol ] = ChannelPSK( WAWE_F
         else
             offset = 0;
         end
-        
+        amplitudeDist = sigmaU*randn();
+        sigmaDist = sigmaOmega*randn();
+        x(i)=(amplitudeDist+amplitude)*cos(2*pi*(offset + sigmaDist));
+        y(i)=(amplitudeDist+amplitude)*sin(2*pi*(offset + sigmaDist));
         for j = 1:numberOfSamplesInSymbol
            % deltaU(((i-1)*numberOfSamplesInSymbol)+j)
-            carrierWawe(((i-1)*numberOfSamplesInSymbol)+j) = (sigmaU*randn()+amplitude)*cos(2*pi*WAWE_FREQUENCY*timeAxis(((i-1)*numberOfSamplesInSymbol)+j) + 2*pi*offset+sigmaOmega*randn());
+            carrierWawe(((i-1)*numberOfSamplesInSymbol)+j) = (amplitudeDist+amplitude)*cos(2*pi*WAWE_FREQUENCY*timeAxis(((i-1)*numberOfSamplesInSymbol)+j) + 2*pi*(offset+sigmaDist));
         end
     end
 end
