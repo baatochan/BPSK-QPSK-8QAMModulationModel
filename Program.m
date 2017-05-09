@@ -6,14 +6,14 @@ clear;
 BIT_NUMBER = 1000; %ilosc bitow do wygenerowania
 WAWE_FREQUENCY = 1000; %[Hz] czestotliwosc fali nosnej
 sigmaU=0.02;                            %odchylenie standardowe U
-sigmaOmega=0.005;                        %odchylenie standardowe Omegi
+sigmaOmega=0.05;                        %odchylenie standardowe Omegi
 
 bitArray = RandomBitsGenerator(BIT_NUMBER);
 
 [carrierWawe, timeAxis] = QPSKModulator(WAWE_FREQUENCY, BIT_NUMBER, bitArray);
 [carrierWawe2, timeAxis2] = BPSKModulator(WAWE_FREQUENCY, BIT_NUMBER, bitArray);
 [carrierWawe3, timeAxis3, numberOfSamplesInSymbol3, x3, y3] = ChannelQPSK(WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega);
-[carrierWawe4, timeAxis4, numberOfSamplesInSymbol4, x4, y4] = ChannelPSK(WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega);
+[carrierWawe4, timeAxis4, numberOfSamplesInSymbol4, x4, y4, x04, y04, x14, y14] = ChannelPSK( WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega );
 
 figure(1)
 subplot(2,1,1);
@@ -36,8 +36,17 @@ xlabel ('czas[s]');
 ylabel ('sygnal');
 
 figure(3)
-scatter(x3,y3)
+scatter(x3,y3,'filled')
 axis([-1 1 -1 1]);
 figure(4)
-scatter(x4,y4)
+scatter(x4,y4,'filled')
 axis([-1 1 -1 1]);
+
+figure(5)
+scatter(x04,y04,'b.')
+hold on;
+scatter(x14,y14,'g.')
+axis([-1 1 -1 1]);
+%figure(6)
+%scatter(x4,y4,'filled')
+%axis([-1 1 -1 1]);

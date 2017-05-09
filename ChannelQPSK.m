@@ -1,4 +1,4 @@
-function [ carrierWawe, timeAxis, numberOfSamplesInSymbol, x, y ] = ChannelQPSK( WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega )
+function [ carrierWawe, timeAxis, numberOfSamplesInSymbol, x, y, x0, y0, x1, y1, x2, y2, x3, y3 ] = ChannelQPSK( WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega )
 
 sampleFrequency = 20000; % czestotliwosc probkowania [Hz]
     amplitude = 0.5;          % amplituda
@@ -12,6 +12,14 @@ sampleFrequency = 20000; % czestotliwosc probkowania [Hz]
     carrierWawe = zeros(1, numberOfSamplesInSymbol*(BIT_NUMBER/2));
     x= zeros(1, BIT_NUMBER/2);
     y= zeros(1, BIT_NUMBER/2);
+    x0_temp= zeros(1, BIT_NUMBER/2);
+    y0_temp= zeros(1, BIT_NUMBER/2);
+    x1_temp= zeros(1, BIT_NUMBER/2);
+    y1_temp= zeros(1, BIT_NUMBER/2);
+    x2_temp= zeros(1, BIT_NUMBER/2);
+    y3_temp= zeros(1, BIT_NUMBER/2);
+    x4_temp= zeros(1, BIT_NUMBER/2);
+    y5_temp= zeros(1, BIT_NUMBER/2);
     
     for i = 1:(BIT_NUMBER/2)
         if bitArray(2*i) == 0
