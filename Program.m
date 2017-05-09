@@ -4,20 +4,27 @@ clear;
 BIT_NUMBER = 1000; %ilosc bitow do wygenerowania
 WAWE_FREQUENCY = 1000; %[Hz] czestotliwosc fali nosnej
 sigmaU=0.1;                            %odchylenie standardowe U
-sigmaOmega=0.1;                        %odchylenie standardowe Omegi
+sigmaOmega=0.05;                        %odchylenie standardowe Omegi
 
 bitArray = RandomBitsGenerator(BIT_NUMBER)
 
 [carrierWawe3, timeAxis3, numberOfSamplesInSymbol3, x3, y3] = ChannelQPSK(WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega);
 [carrierWawe4, timeAxis4, numberOfSamplesInSymbol4, x4, y4] = ChannelPSK(WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega);
 
+colorPSK = zeros(BIT_NUMBER, 3);
+colorQPSK = zeros(BIT_NUMBER/2, 1);
+
 
 for i=1:BIT_NUMBER
     if bitArray(i) == 0
-        colorPSK(i)=1;
+        colorPSK(i,1)=0;
+        colorPSK(i,2)=0;
+        colorPSK(i,3)=1;
     end
     if bitArray(i) == 1
-        colorPSK(i)=2;
+        colorPSK(i,1)=1;
+        colorPSK(i,2)=0;
+        colorPSK(i,3)=0;
     end
 end
 
@@ -41,9 +48,13 @@ for i = 1:(BIT_NUMBER/2)
 end
 
 
+
+
+
 figure(3)
-scatter(x3,y3,[],colorQPSK,'filled');
+scatter(x3,y3,10,colorQPSK,'filled');
 axis([-1 1 -1 1]);
+
 figure(4)
-scatter(x4,y4,[],colorPSK,'filled');
+scatter(x4,y4,10,colorPSK,'filled');
 axis([-1 1 -1 1]);
