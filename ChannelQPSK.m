@@ -10,8 +10,8 @@ sampleFrequency = 20000; % czestotliwosc probkowania [Hz]
     timeAxis = 0:1/(sampleFrequency):(numberOfSamples-1)/(sampleFrequency);
     
     carrierWawe = zeros(1, numberOfSamplesInSymbol*(BIT_NUMBER/2));
-    x= zeros(1, BIT_NUMBER/2);
-    y= zeros(1, BIT_NUMBER/2);
+    x= zeros(1, floor(BIT_NUMBER/2));
+    y= zeros(1, floor(BIT_NUMBER/2));
     
     for i = 1:(BIT_NUMBER/2)
         if bitArray(2*i) == 0
