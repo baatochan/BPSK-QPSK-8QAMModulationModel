@@ -11,15 +11,15 @@ sigmaOmega=0.05; %odchylenie standardowe Omegi
 
 bitArray = RandomBitsGenerator(BIT_NUMBER);
 
-%% Modulation //uncomment function below if you want to use it
+%% Modulation
 
-%Modulate(WAWE_FREQUENCY, BIT_NUMBER, bitArray);
+%Modulate(WAWE_FREQUENCY, BIT_NUMBER, bitArray); %uncomment if you w
 
-%% Transmission through channels //uncomment function below if you want to use it
+%% Transmission through channels
 
 %TransmitSignal (WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega);
 
-%% Generate 3D plot which shows how BER is changing depending on sigmaU and sigmaOmega //uncomment function below if you want to use it
+%% Generate 3D plot which shows how BER is changing depending on sigmaU and sigmaOmega
 
 % Settings
 RESOLUTION = 20;

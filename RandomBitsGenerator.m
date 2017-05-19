@@ -11,5 +11,3 @@ function bitArray = RandomBitsGenerator(BIT_NUMBER)
     end
 
 end
-
-

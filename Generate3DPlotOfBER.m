@@ -1,16 +1,15 @@
-clear;
-Size=20;    %%%%%%%%%%%%%%%%%%%%%%%%% "Rozdzielczoœæ wykresu"
-BER_PSK_VALUE = zeros(Size, Size);
-BER_QPSK_VALUE = zeros(Size, Size);
-BIT_NUMBER = 5000; %ilosc bitow do wygenerowania
-WAWE_FREQUENCY = 1000; %[Hz] czestotliwosc fali nosnej
+function Generate3DPlotOfBER (BIT_NUMBER, WAWE_FREQUENCY, RESOLUTION, maxSigmaU, maxSigmaOmega)
+%% Prepare Arrays
 
-maxSigmaU=1.5;      %max wartosc odchylen standarowych
-maxSigmaOmega=0.3;
-for i=1:Size
-    for j=1:Size
-        sigmaU=i/Size*(maxSigmaU);                            %odchylenie standardowe U
-        sigmaOmega=j/Size*(maxSigmaOmega);                        %odchylenie standardowe Omegi
+BER_PSK_VALUE = zeros(RESOLUTION, RESOLUTION);
+BER_QPSK_VALUE = zeros(RESOLUTION, RESOLUTION);
+
+%% Generate BER Values
+
+for i=1:RESOLUTION
+    for j=1:RESOLUTION
+        sigmaU=i/RESOLUTION*(maxSigmaU); %odchylenie standardowe U
+        sigmaOmega=j/RESOLUTION*(maxSigmaOmega); %odchylenie standardowe Omegi
 
         bitArray = RandomBitsGenerator(BIT_NUMBER);
         [carrierWawe3, timeAxis3, numberOfSamplesInSymbol3, x3, y3] = ChannelQPSK( WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega);
@@ -27,10 +26,19 @@ for i=1:Size
     end
 end
 
-ArraySigmaU= 1/Size*(maxSigmaU):1/Size*(maxSigmaU):maxSigmaU;
-ArraySigmaOmega= 1/Size*(maxSigmaOmega):1/Size*(maxSigmaOmega):maxSigmaOmega;
+%% Prepare results
 
+ArraySigmaU= 1/RESOLUTION*(maxSigmaU):1/RESOLUTION*(maxSigmaU):maxSigmaU;
+ArraySigmaOmega= 1/RESOLUTION*(maxSigmaOmega):1/RESOLUTION*(maxSigmaOmega):maxSigmaOmega;
+
+%% Show plot for BPSK
+
+figure(5);
 surf(ArraySigmaOmega,ArraySigmaU,BER_PSK_VALUE)
-figure(2);
+
+%% Show plot for QPSK
+
+figure(6);
 surf(ArraySigmaOmega,ArraySigmaU,BER_QPSK_VALUE)
 
+end
