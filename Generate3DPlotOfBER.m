@@ -1,4 +1,4 @@
-function Generate3DPlotOfBER (BIT_NUMBER, WAWE_FREQUENCY, RESOLUTION, maxSigmaU, maxSigmaOmega)
+function Generate3DPlotOfBER ( BIT_NUMBER, WAWE_FREQUENCY, RESOLUTION, maxSigmaU, maxSigmaOmega)
 %% Prepare Arrays
 
 BER_PSK_VALUE = zeros(RESOLUTION, RESOLUTION);
@@ -34,11 +34,19 @@ ArraySigmaOmega= 1/RESOLUTION*(maxSigmaOmega):1/RESOLUTION*(maxSigmaOmega):maxSi
 %% Show plot for BPSK
 
 figure(5);
-surf(ArraySigmaOmega,ArraySigmaU,BER_PSK_VALUE)
+surf(ArraySigmaOmega,ArraySigmaU,BER_PSK_VALUE);
+title('plot for BPSK');
+xlabel ('SigmaOmega');
+ylabel ('SigmaU');
+zlabel ('BER');
 
 %% Show plot for QPSK
 
 figure(6);
-surf(ArraySigmaOmega,ArraySigmaU,BER_QPSK_VALUE)
+surf(ArraySigmaOmega,ArraySigmaU,BER_QPSK_VALUE);
+title('plot for QPSK');
+xlabel ('SigmaOmega');
+ylabel ('SigmaU');
+zlabel ('BER');
 
 end
