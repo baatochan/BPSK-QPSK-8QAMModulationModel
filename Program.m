@@ -23,9 +23,9 @@ bitArray = RandomBitsGenerator(BIT_NUMBER);
 
 % Settings
 RESOLUTION = 20;
-maxSigmaU=0.4;      %max wartosc odchylen standarowych
-maxSigmaOmega=0.15; %max wartosc 
+maxSigmaU=0.5;      %max wartosc odchylen standarowych
+maxSigmaOmega=0.5; %max wartosc 
 
 % Generating
 
-%Generate3DPlotOfBER ( BIT_NUMBER, WAWE_FREQUENCY, RESOLUTION, maxSigmaU, maxSigmaOmega);
+Generate3DPlotOfBER ( BIT_NUMBER, WAWE_FREQUENCY, RESOLUTION, maxSigmaU, maxSigmaOmega);

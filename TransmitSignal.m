@@ -1,7 +1,7 @@
 function TransmitSignal (WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega)
 %% Modulate and send through channel
 
-[carrierWawe3, timeAxis3, numberOfSamplesInSymbol3, x3, y3] = ChannelQPSK( WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega);
+[carrierWawe3, timeAxis3, numberOfSamplesInSymbol3, x3, y3] = ChannelQPSK(WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega);
 [carrierWawe4, timeAxis4, numberOfSamplesInSymbol4, x4, y4] = ChannelPSK(WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega);
 
 %% Show modulated signal
@@ -47,7 +47,7 @@ BER_QPSK = calculateBER (BIT_NUMBER, bitArray, demodulatedBitArrayQPSK);
 
 %% Print BER
 
-%BER_PSK
-%BER_QPSK
+BER_PSK
+BER_QPSK
 
 end
