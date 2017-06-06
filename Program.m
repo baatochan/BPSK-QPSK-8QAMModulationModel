@@ -4,8 +4,8 @@ clear;
 
 BIT_NUMBER = 1000; %ilosc bitow do wygenerowania
 WAWE_FREQUENCY = 1000; %[Hz] czestotliwosc fali nosnej
-sigmaU=0.1; %odchylenie standardowe U
-sigmaOmega=0.05; %odchylenie standardowe Omegi
+sigmaU=0.005; %odchylenie standardowe U
+sigmaOmega=0.001; %odchylenie standardowe Omegi
 
 %% Generting Random Signal (bit sequence) //required for every next part
 
@@ -28,4 +28,8 @@ maxSigmaOmega=0.5; %max wartosc
 
 % Generating
 
-Generate3DPlotOfBER ( BIT_NUMBER, WAWE_FREQUENCY, RESOLUTION, maxSigmaU, maxSigmaOmega);
+%Generate3DPlotOfBER ( BIT_NUMBER, WAWE_FREQUENCY, RESOLUTION, maxSigmaU, maxSigmaOmega);
+
+%% Transmission through 8-QAM Channel
+
+TransmitSignalUsingQAM (WAWE_FREQUENCY, BIT_NUMBER, bitArray, sigmaU, sigmaOmega);
