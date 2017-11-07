@@ -1,11 +1,11 @@
-# BPSK-QBSK-8QAMModulationModel
+# BPSK, QBSK & 8QAM Modulation Model
 Simple model of BPSK, QPSK &amp; 8QAM Modulator and Demodulator in MATLAB.
 
 Author: Bartosz Rodziewicz, Sebastian Korniewicz, Jan Potocki, Bartek Siusta
 
-This is a simple model of signal transmission with BPSK, QPSK &amp; 8QAM modulation. 
+This is a simple model of signal transmission with BPSK, QPSK &amp; 8QAM modulation.
 
-There is: 
+There is:
 a modulator for every modulation,
 a channel which creates interferences and disruptions
 and a demodulator.
